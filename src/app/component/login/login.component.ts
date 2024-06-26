@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Credentials } from '../../model/credentials';
 import { LoginService } from '../../service/login-service';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { Role } from '../../model/role';
+import {  NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-login',
@@ -11,6 +11,7 @@ import { Role } from '../../model/role';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+
   creds: Credentials= {
     id:0,
     username: "",

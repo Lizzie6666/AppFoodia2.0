@@ -16,7 +16,7 @@ import { MatSort } from '@angular/material/sort';
 export class ListCatComponent implements OnInit, AfterViewInit {
   lista: IngredientCategory[] = [];
   displayedColumns = ['id', 'name', 'accion01', 'accion02'];
-  dataSource = new MatTableDataSource<IngredientCategory>();
+  dataSource = new MatTableDataSource<IngredientCategory>(); // Asegúrate de inicializar correctamente
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
