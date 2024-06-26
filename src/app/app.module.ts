@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule} from '@angular/material/table';//add
 import { MatButtonModule } from '@angular/material/button';
@@ -36,6 +35,15 @@ import { CreateEditComponent } from './component/ingredient/create-edit/create-e
 import { DialogComponent } from './component/recipe/recipe-list/dialog/dialog.component';
 import { IngredientDialogComponent } from './component/ingredient/ingredient-list/ingredient-dialog/ingredient-dialog.component';
 import { CreateEditRecipeComponent } from './component/recipe/create-edit-recipe/create-edit-recipe.component';
+import { ListCommentsComponent } from './component/community/list-comments/list-comments.component';
+import { SafeUrlPipe } from './safe-url.pipe';
+import { LoginComponent } from './component/login/login.component';
+import { TokenInterceptor } from './model/token.interceptor';
+import {MatMenuModule} from '@angular/material/menu';
+import { CreateCommentComponent } from './component/community/create-comment/create-comment.component';
+import { ConfirmationComponent } from './component/recipe/recipe-list/confirmation/confirmation.component';
+import { SignUpComponent } from './component/sign-up/sign-up.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +59,13 @@ import { CreateEditRecipeComponent } from './component/recipe/create-edit-recipe
     CreateEditComponent,
     DialogComponent,
     IngredientDialogComponent,
-    CreateEditRecipeComponent
+    CreateEditRecipeComponent,
+    ListCommentsComponent,
+    SafeUrlPipe,
+    LoginComponent,
+    CreateCommentComponent,
+    ConfirmationComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -74,11 +88,12 @@ import { CreateEditRecipeComponent } from './component/recipe/create-edit-recipe
     MatGridListModule,
     MatCardModule,
     MatIconModule,
-    CommonModule
+    CommonModule,
+    MatMenuModule
 
   ],
   providers: [
-    provideHttpClient(withFetch())
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

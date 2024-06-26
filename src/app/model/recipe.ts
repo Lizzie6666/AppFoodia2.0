@@ -1,5 +1,4 @@
 import { Ingredient } from "./ingredient";
-import { Interactions } from "./interactions";
 import { RecipeCategory } from "./recipe-category";
 import { User } from "./user";
 
@@ -9,12 +8,11 @@ export class Recipe {
     title:String="";
     image:String="";
     instructions:String="";
-    time:number=0;
+    time:String="";
     description:String="";
     type:String="";
     favorite:Boolean=true;
     ingredients:Ingredient[]=[];
     recipeCategory:RecipeCategory= new RecipeCategory();
-    interactions:Interactions[]=[];
     user:User=new User();
 }

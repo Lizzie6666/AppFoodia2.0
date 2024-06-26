@@ -4,6 +4,18 @@
   justify-content: center; /* Centra las tarjetas horizontalmente */
   gap: 20px; /* Espacio entre las tarjetas */
 }
+.recipe-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon-actions {
+  display: flex;
+  color:#F79F1A;
+}
+
+
 
 .example-card {
   width: calc(25% - 20px); /* 4 tarjetas por fila, restando el espacio del gap */

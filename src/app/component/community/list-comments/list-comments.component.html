@@ -1,0 +1,39 @@
+<div class="interactions-wrapper">
+  <h2 class="community-title">From our Community</h2>
+  <div class="interactions-container">
+    <div class="recipe-container">
+      <mat-card class="example-card" *ngFor="let interaction of interactions">
+        <div class="interaction-info">
+          <img src="assets/images/user-profile-icon-free-vector.jpg" alt="{{ interaction.user.username }}" class="user-image">
+          <div>
+            <span class="username">{{ interaction.user.username }}</span>
+            <span class="stars">
+              <ng-container *ngFor="let star of getStars(interaction.score)">
+                <mat-icon>star</mat-icon>
+              </ng-container>
+            </span>
+          </div>
+        </div>
+        <img src="assets/images/recipe.jpg" alt="Recipe Image" class="rounded-image">
+        <mat-card-content>
+          <mat-card-title>{{ interaction.description }}</mat-card-title>
+        </mat-card-content>
+        <mat-card-actions>
+          <a href="#"><mat-icon>thumb_up</mat-icon> 2</a>
+          <a href="#"><mat-icon>share</mat-icon> Share</a>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

@@ -15,8 +15,15 @@ export class IngredientService {
   list() : Observable<any>{
     return this.http.get<Ingredient[]> (this.url+"/ingredient/list");
   }
+  findByName(name:string){
+    return this.http.get(this.url+"/ingredient/findByName/"+name)
+  }
+  listById(id:number) : Observable<any>{
+    console.log("ListId:"+this.url+"/ingredient/listById/"+id);
+    return this.http.get<Ingredient> (this.url+"/ingredient/listById/"+id);
+  }
   insert(recipe:Ingredient){
-    return this.http.post(this.url+ '/ingredient/save', recipe);
+    return this.http.post(this.url+ "/ingredient/save", recipe);
   }
   update(rec: Ingredient){
     return this.http.put(this.url + "/ingredient/update", rec);
