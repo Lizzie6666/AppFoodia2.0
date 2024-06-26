@@ -1,0 +1,48 @@
+.material-icons{
+    color:#F79F1A;
+}
+.container {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  mat-grid-list {
+    margin-bottom: 20px;
+  }
+  
+  mat-grid-tile {
+    padding: 0 !important;
+  }
+  
+  mat-form-field {
+    margin-right: 15px; /* Reducido el espacio entre los campos */
+  }
+  
+  .mat-elevation-z8 {
+    padding: 20px;
+    background: white;
+    border-radius: 4px;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  th.mat-header-cell {
+    text-align: left;
+  }
+  
+  button.mat-raised-button {
+    min-width: 40px;
+    padding: 0;
+  }
+  
+  button.mat-raised-button .material-icons {
+    font-size: 18px;
+  }
+  
