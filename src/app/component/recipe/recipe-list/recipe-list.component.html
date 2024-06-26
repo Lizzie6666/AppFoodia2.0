@@ -1,19 +1,20 @@
-<button mat-raised-button (click)="sortByTime()" class="btn-sort">Ordenar por tiempo</button>
+<div class="filter-container">
+  <button mat-raised-button (click)="sortByTime()" class="btn-sort">Ordenar</button>
+  
+  <mat-form-field appearance="fill" class="category-field">
+    <mat-label>Categoría</mat-label>
+    <mat-select formControlName="category" (selectionChange)="listByCategory($event.value)">
+      <mat-option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<mat-form-field appearance="fill" class="category-field">
-  <mat-label>Categoría</mat-label>
-  <mat-select formControlName="category" (selectionChange)="listByCategory($event.value)">
-    <mat-option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</mat-option>
-  </mat-select>
-</mat-form-field>
-
-
-<mat-form-field appearance="fill">
-  <mat-label>Tipo de alimentación</mat-label>
-  <mat-select formControlName="type" (selectionChange)="listByType($event.value)">
-    <mat-option *ngFor="let dietType of type" [value]="dietType.name">{{ dietType.name }}</mat-option>
-  </mat-select>
-</mat-form-field>
+  <mat-form-field appearance="fill" class="type-field">
+    <mat-label>Tipo de alimentación</mat-label>
+    <mat-select formControlName="type" (selectionChange)="listByType($event.value)">
+      <mat-option *ngFor="let dietType of type" [value]="dietType.name">{{ dietType.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
 
 <div class="recipe-container">
   <mat-card class="example-card" *ngFor="let recipe of recipes">
@@ -22,7 +23,7 @@
       <div class="recipe-header">
         <mat-card-title>{{ recipe.title }}</mat-card-title>
         <mat-card-actions class="icon-actions">
-          <button mat-icon-button [routerLink]="['/recipe/create-edit',recipe.id]">           
+          <button mat-icon-button [routerLink]="['/recipe/create-edit', recipe.id]">
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button (click)="openDialog(recipe.id)">

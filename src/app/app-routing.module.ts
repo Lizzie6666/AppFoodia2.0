@@ -12,6 +12,9 @@ import { CreateEditRecipeComponent } from './component/recipe/create-edit-recipe
 import { LoginComponent } from './component/login/login.component';
 import { AuthGuardGuard } from './security/auth-guard.guard';
 import { SignUpComponent } from './component/sign-up/sign-up.component';
+import { CatIngredientComponent } from './component/cat-ingredient/cat-ingredient.component';
+import { ListCatComponent } from './component/cat-recipe/list-cat/list-cat.component';
+import { CreateEditCatComponent } from './component/cat-ingredient/create-edit-cat/create-edit-cat.component';
 
 const routes: Routes = [
   {
@@ -55,6 +58,16 @@ const routes: Routes = [
       ,
       {
         path:'edit',component:CreateEditComponent, canActivate: [AuthGuardGuard]
+      }
+    ]
+  },
+  {
+    path:'cat-ingredient',component:CatIngredientComponent,children:[
+      {
+        path:'list',component:ListCatComponent,canActivate:[AuthGuardGuard]
+      },
+      {
+        path:'create-edit/:id',component:CreateEditCatComponent,canActivate:[AuthGuardGuard]
       }
     ]
   }

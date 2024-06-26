@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,6 +43,14 @@ import {MatMenuModule} from '@angular/material/menu';
 import { CreateCommentComponent } from './component/community/create-comment/create-comment.component';
 import { ConfirmationComponent } from './component/recipe/recipe-list/confirmation/confirmation.component';
 import { SignUpComponent } from './component/sign-up/sign-up.component';
+import { UserComponent } from './component/user/user.component';
+import { ListUserComponent } from './component/user/list-user/list-user.component';
+import { CatIngredientComponent } from './component/cat-ingredient/cat-ingredient.component';
+import { CatRecipeComponent } from './component/cat-recipe/cat-recipe.component';
+import { ListCatComponent } from './component/cat-recipe/list-cat/list-cat.component';
+import { IngreCatDialogComponent } from './component/cat-ingredient/list-cat/ingre-cat-dialog/ingre-cat-dialog.component';
+import { CreateEditCatComponent } from './component/cat-ingredient/create-edit-cat/create-edit-cat.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -65,7 +73,14 @@ import { SignUpComponent } from './component/sign-up/sign-up.component';
     LoginComponent,
     CreateCommentComponent,
     ConfirmationComponent,
-    SignUpComponent
+    SignUpComponent,
+    UserComponent,
+    ListUserComponent,
+    CatIngredientComponent,
+    CatRecipeComponent,
+    ListCatComponent,
+    IngreCatDialogComponent,
+    CreateEditCatComponent
   ],
   imports: [
     BrowserModule,
@@ -92,8 +107,10 @@ import { SignUpComponent } from './component/sign-up/sign-up.component';
     MatMenuModule
 
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
