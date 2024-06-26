@@ -27,6 +27,9 @@ export class RecipeComponent implements OnInit {
   goToIngredients() {
     this.router.navigate(['/ingredient/list']);
   }
+  goToCatIngredients() {
+    this.router.navigate(['/cat-ingredient/list']);
+  }
 
   navigateToCreateEdit() {
     this.router.navigate(['/recipe/create-edit']);
