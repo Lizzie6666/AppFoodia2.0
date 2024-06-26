@@ -5,6 +5,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { RecipeCategory } from '../../../model/recipe-category';
+import { RecipeCategoryService } from '../../../service/recipe-category.service';
 
 
 @Component({
@@ -14,6 +16,7 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 })
 export class RecipeListComponent implements OnInit {
   dialogOpen = false;
+  categories: RecipeCategory[] = [];
   recipes: Recipe[] = [];
   type: any[] = [
     { name: 'Vegetariano' },
@@ -22,13 +25,18 @@ export class RecipeListComponent implements OnInit {
     { name: 'Pescetariano' }
   ];
   dataSource = new MatTableDataSource<Recipe>();
-  constructor(private recipeService: RecipeService, private dialog: MatDialog) { }
+  sortAscending = true; // Flag to track the sort order
+  constructor(private recipeService: RecipeService,
+     private dialog: MatDialog,
+     private recipeCategoryService: RecipeCategoryService) { }
 
   ngOnInit(): void {
     this.recipeService.list().subscribe((data: Recipe[]) => {
       this.recipes = data;
       this.dataSource.data=data;
     });
+    this.loadCategories();
+
   }
 
   toggleFavorite(recipe: Recipe): void {
@@ -71,7 +79,27 @@ export class RecipeListComponent implements OnInit {
       });
     }
   }
-  filtrar(e: any) {
-    this.dataSource.filter = e.target.value.trim().toLowerCase();
+
+  loadCategories(): void {
+    this.recipeCategoryService.list().subscribe(data => {
+      this.categories = data;
+    });
   }
+  listByType(type: string): void {
+    this.recipeService.filterByType(type).subscribe(data => {
+      this.recipes = data;
+
+    });
+  }
+  listByCategory(categoryName: string): void {
+    this.recipeService.listByCategory(categoryName).subscribe(data => {
+      this.recipes = data;
+
+    });
+  }
+  sortByTime(): void {
+    this.recipes.sort((a, b) => this.sortAscending ? +a.time - +b.time : +b.time - +a.time);
+    this.sortAscending = !this.sortAscending; // Toggle the sort order
+  }
+  
 }

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Recipe } from '../model/recipe';
-import { Observable, Subject } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 import { environment } from '../../environment';
 const base_url = environment.base
 @Injectable({
@@ -14,10 +14,24 @@ export class RecipeService {
   private lista = new Subject<Recipe[]>();
   constructor(private http:HttpClient) { }
 
-  list() : Observable<any>{
-    console.log(this.url+"/recipe/list");
+  list(): Observable<Recipe[]> {
+    console.log(this.url + "/recipe/list");
+    return this.http.get<Recipe[]>(this.url + "/recipe/list").pipe(
+      map(recipes => recipes.map(recipe => ({
+        ...recipe,
+        time: +recipe.time // Asegúrate de que 'time' sea un número
+      })))
+    );
+  }
+  listByCategory(name:string) : Observable<any>{
+    console.log(this.url+"/recipe/recipeListByCategory/"+name);
     //return this.http.get<Recipe[]> (this.url+"/recipe/list",{ 'headers': this.httpHeaders });
-    return this.http.get<Recipe[]> (this.url+"/recipe/list");
+    return this.http.get<Recipe[]> (this.url+"/recipe/recipeListByCategory/"+name);
+  }
+  listByTime(time:string) : Observable<any>{
+    console.log(this.url+"/recipe/listByTime/"+time);
+    //return this.http.get<Recipe[]> (this.url+"/recipe/list",{ 'headers': this.httpHeaders });
+    return this.http.get<Recipe[]> (this.url+"/recipe/listByTime/"+time);
   }
   listById(id:number){
     console.log("ListId:"+this.url+"/recipe/listById/"+id);

@@ -8,7 +8,7 @@ export class Recipe {
     title:String="";
     image:String="";
     instructions:String="";
-    time:String="";
+    time:Number=0;
     description:String="";
     type:String="";
     favorite:Boolean=true;

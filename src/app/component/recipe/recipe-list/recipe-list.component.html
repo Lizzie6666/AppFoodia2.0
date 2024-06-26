@@ -1,8 +1,19 @@
-<mat-grid-list cols="1" rowHeight="4em">
-  <mat-grid-tile>
-    <input matInput (keyup)="filtrar($event)" placeholder="Buscar">
-  </mat-grid-tile>
-</mat-grid-list>
+<button mat-raised-button (click)="sortByTime()" class="btn-sort">Ordenar por tiempo</button>
+
+<mat-form-field appearance="fill" class="category-field">
+  <mat-label>Categoría</mat-label>
+  <mat-select formControlName="category" (selectionChange)="listByCategory($event.value)">
+    <mat-option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+<mat-form-field appearance="fill">
+  <mat-label>Tipo de alimentación</mat-label>
+  <mat-select formControlName="type" (selectionChange)="listByType($event.value)">
+    <mat-option *ngFor="let dietType of type" [value]="dietType.name">{{ dietType.name }}</mat-option>
+  </mat-select>
+</mat-form-field>
 
 <div class="recipe-container">
   <mat-card class="example-card" *ngFor="let recipe of recipes">

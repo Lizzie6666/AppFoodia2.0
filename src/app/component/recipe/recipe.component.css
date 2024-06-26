@@ -26,3 +26,7 @@
   line-height: 1; /* Asegura que la altura de línea sea la correcta */
   vertical-align: middle; /* Asegura que el contenido esté verticalmente alineado */
 }
+.category-field {
+  margin-left: auto; /* Mueve el campo de categoría a la izquierda */
+}
+
